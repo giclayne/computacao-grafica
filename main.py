@@ -5,6 +5,8 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
 
+from texture import load_images
+
 global sunIsActive
 global earth, jupiter, mars, mercury, milky_way, moon, neptune, saturn_ring, saturn, sun, uranus, venus
 sunIsActive = 1
@@ -30,8 +32,6 @@ def draw_planet(texture, y_pos, x_pos, scale, diameter, radius):
     gluSphere(obj, diameter, 25, 25)
     glDisable(GL_TEXTURE_2D)
     glPopMatrix()
-
-
 
 def solar_system_with_orbits():
     glDrawBuffer(GL_BACK)
@@ -99,6 +99,28 @@ def solar_system():
     glRasterPos2f(0, -51)
 
 
+def initialize():
+    global angle, rotX, rotY, rotZ, obsX, obsY, obsZ
+    global earth, jupiter, mars, mercury, moon, neptune, saturn_ring, saturn, sun, uranus, venus
+
+    angle = 10
+
+    rotX = 0
+    rotY = 0
+    rotZ = 0
+    obsX = obsY = 0
+    obsZ = 150
+
+    earth, jupiter, mars, mercury, moon, neptune, saturn_ring, saturn, sun, uranus, venus = load_images()
+
+    glEnable(GL_CULL_FACE)  
+    glCullFace(GL_BACK)  
+
+    glEnable(GL_LIGHTING)
+    glEnable(GL_LIGHT0)
+    glEnable(GL_DEPTH_TEST)
+
+
 def main():
     glutInit(sys.argv)
     glutInitContextVersion(1, 1)
@@ -110,6 +132,8 @@ def main():
     glutCreateWindow("Sistema Solar")
 
     glutDisplayFunc(solar_system_with_orbits)
+
+    initialize()
 
 
 main()
