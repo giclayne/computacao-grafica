@@ -125,6 +125,21 @@ def solar_system():
     # VENUS - Diameter: 12,103.6 km
     draw_planet(venus, 17, 17, 1.2, 1.21, 2.5)
 
+    # EARTH AND MOON - Diameter Earth: 12,756.2 km
+    draw_planets_with_satellites(
+        earth, moon, 27, 27, 1.2, 1.27, 0.5, 1.9, 0.2)
+
+    # MARS - Diameter: 6,792.4 km
+    draw_planets_with_satellites(mars, moon, 41, 41, 1.2, 0.68, 0.5, 1.9, 1)
+
+    # URANUS - Diameter: 51,118 km
+    draw_planets_with_satellites(
+        uranus, moon, 107, 107, 1.5, 0.51, 0.25, 1.2, 1.3)
+
+    # NEPTUNE - Diameter: 49,528 km
+    draw_planets_with_satellites(
+        neptune, moon, 127, 127, 1.5, 0.495, 0.20, 1, 1)
+
     glRasterPos2f(0, -51)
 
 
