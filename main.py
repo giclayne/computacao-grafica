@@ -11,7 +11,7 @@ sunIsActive = 1
 axisX, axisY, axisZ = 0, 0, 0
 
 
-def Draw_Planet(texture, y_pos, x_pos, scale, diameter, radius):
+def draw_planet(texture, y_pos, x_pos, scale, diameter, radius):
     time = glutGet(GLUT_ELAPSED_TIME) / 1000.0
     rotation_angle = time * 2
 
@@ -33,13 +33,13 @@ def Draw_Planet(texture, y_pos, x_pos, scale, diameter, radius):
 
 
 
-def Solar_System_with_orbits():
+def solar_system_with_orbits():
     glDrawBuffer(GL_BACK)
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-    Solar_System()
+    solar_system()
 
 
-def Solar_System():
+def solar_system():
     global mercury, venus
 
     time = glutGet(GLUT_ELAPSED_TIME) / 1000.0
@@ -91,10 +91,10 @@ def Solar_System():
         glEnable(GL_DEPTH_TEST)
     
     # MERCURY - Diameter: 4,879.4 km
-    Draw_Planet(mercury, 7, 7, 2, 0.48, 3.7)
+    draw_planet(mercury, 7, 7, 2, 0.48, 3.7)
 
     # VENUS - Diameter: 12,103.6 km
-    Draw_Planet(venus, 17, 17, 1.2, 1.21, 2.5)
+    draw_planet(venus, 17, 17, 1.2, 1.21, 2.5)
 
     glRasterPos2f(0, -51)
 
@@ -109,7 +109,7 @@ def main():
     glutInitWindowPosition(0, 0)
     glutCreateWindow("Sistema Solar")
 
-    glutDisplayFunc(Solar_System_with_orbits)
+    glutDisplayFunc(solar_system_with_orbits)
 
 
 main()
