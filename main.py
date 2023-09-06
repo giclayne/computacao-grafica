@@ -143,6 +143,13 @@ def solar_system():
     glRasterPos2f(0, -51)
 
 
+def draw():
+    glDrawBuffer(GL_BACK)
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+    solar_system()
+    glutSwapBuffers()
+
+
 def initialize():
     global angle, rotX, rotY, rotZ, obsX, obsY, obsZ
     global earth, jupiter, mars, mercury, moon, neptune, saturn_ring, saturn, sun, uranus, venus
