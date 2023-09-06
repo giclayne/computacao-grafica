@@ -1,4 +1,5 @@
 import sys
+import math
 
 from OpenGL.GL import *
 from OpenGL.GLU import *
@@ -8,6 +9,28 @@ global sunIsActive
 global earth, jupiter, mars, mercury, milky_way, moon, neptune, saturn_ring, saturn, sun, uranus, venus
 sunIsActive = 1
 axisX, axisY, axisZ = 0, 0, 0
+
+
+def Draw_Planet(texture, y_pos, x_pos, scale, diameter, radius):
+    time = glutGet(GLUT_ELAPSED_TIME) / 1000.0
+    rotation_angle = time * 2
+
+    glPushMatrix()
+    glRasterPos2f(0, -y_pos)
+    glTranslated(0, -y_pos, 0)
+    # Translation
+    glTranslatef((x_pos * math.cos(2.0 * 3.14 * rotation_angle * radius / 100)),
+                 (y_pos + y_pos * math.sin(2.0 * 3.14 * rotation_angle * radius / 100)), 0)
+    obj = gluNewQuadric()
+    gluQuadricTexture(obj, GL_TRUE)
+    glEnable(GL_TEXTURE_2D)
+    glBindTexture(GL_TEXTURE_2D, texture)
+    glScalef(scale, scale, scale)
+    glRotated(rotation_angle * 20, 0, 0, 1)
+    gluSphere(obj, diameter, 25, 25)
+    glDisable(GL_TEXTURE_2D)
+    glPopMatrix()
+
 
 
 def Solar_System_with_orbits():
@@ -66,6 +89,12 @@ def Solar_System():
         glEnable(GL_LIGHTING)
         glEnable(GL_LIGHT0)
         glEnable(GL_DEPTH_TEST)
+    
+    # MERCURY - Diameter: 4,879.4 km
+    Draw_Planet(mercury, 7, 7, 2, 0.48, 3.7)
+
+    # VENUS - Diameter: 12,103.6 km
+    Draw_Planet(venus, 17, 17, 1.2, 1.21, 2.5)
 
     glRasterPos2f(0, -51)
 
