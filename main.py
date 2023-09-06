@@ -33,6 +33,35 @@ def draw_planet(texture, y_pos, x_pos, scale, diameter, radius):
     glDisable(GL_TEXTURE_2D)
     glPopMatrix()
 
+
+def draw_planets_with_satellites(planet_texture, satellite_texture, y_pos, x_pos, scale, planet_diameter, satellite_diameter, planet_radius, moon_radius):
+    time = glutGet(GLUT_ELAPSED_TIME) / 1000.0
+    rotation_angle = time * 2
+
+    glPushMatrix()
+    glRasterPos2f(0, -y_pos)
+    glTranslated(0, -y_pos, 0)
+    glTranslatef((x_pos * math.cos(2.0 * 3.14 * rotation_angle * planet_radius / 100)),
+                 (y_pos + y_pos * math.sin(2.0 * 3.14 * rotation_angle * planet_radius / 100)), 0)
+    obj = gluNewQuadric()
+    gluQuadricTexture(obj, GL_TRUE)
+    glEnable(GL_TEXTURE_2D)
+    glBindTexture(GL_TEXTURE_2D, planet_texture)
+    glScalef(scale, scale, scale)
+    glRotated(rotation_angle * 20, 0, 0, 1)
+    gluSphere(obj, planet_diameter, 25, 25)
+
+    glTranslatef(x_pos / 10 * (math.cos(2.0 * 3.14 * rotation_angle * moon_radius / 100)),
+                 (y_pos / 10 * math.sin(2.0 * 3.14 * rotation_angle * moon_radius / 100)), 0)
+
+    glBindTexture(GL_TEXTURE_2D, satellite_texture)
+    glScalef(scale, scale, scale)
+    glRotated(rotation_angle * 5, 1, 0, 1)
+    gluSphere(obj, satellite_diameter, 50, 50)
+    glDisable(GL_TEXTURE_2D)
+
+    glPopMatrix()
+
 def solar_system_with_orbits():
     glDrawBuffer(GL_BACK)
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
