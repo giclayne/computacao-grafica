@@ -12,17 +12,17 @@ global texture_index, earth, jupiter, mars, mercury, moon, neptune, saturn_ring,
 #carrega as imagens das texturas
 def load_images():
     global earth, jupiter, mars, mercury, moon, neptune, saturn_ring, saturn, sun, uranus, venus
-    earth = read_texture('./textures/earth.jpg')
-    jupiter = read_texture('./textures/jupiter.jpg')
-    mars = read_texture('./textures/mars.jpg')
-    mercury = read_texture('./textures/mercury.jpg')
-    moon = read_texture('./textures/moon.jpg')
-    neptune = read_texture('./textures/neptune.jpg')
-    saturn_ring = read_texture('./textures/saturn_ring.jpg')
-    saturn = read_texture('./textures/saturn.jpg')
-    sun = read_texture('./textures/sun.jpg')
-    uranus = read_texture('./textures/uranus.jpg')
-    venus = read_texture('./textures/venus.jpg')
+    earth = read_texture('textures/earth.jpg')
+    jupiter = read_texture('textures/jupiter.jpg')
+    mars = read_texture('textures/mars.jpg')
+    mercury = read_texture('textures/mercury.jpg')
+    moon = read_texture('textures/moon.jpg')
+    neptune = read_texture('textures/neptune.jpg')
+    saturn_ring = read_texture('textures/saturn_ring.png')
+    saturn = read_texture('textures/saturn.jpg')
+    sun = read_texture('textures/sun.jpg')
+    uranus = read_texture('textures/uranus.jpg')
+    venus = read_texture('textures/venus.jpg')
     return earth, jupiter, mars, mercury, moon, neptune, saturn_ring, saturn, sun, uranus, venus
 
 # função para ler a textura a partir de um arquivo
