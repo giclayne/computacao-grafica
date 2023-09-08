@@ -65,7 +65,48 @@ def draw_planets_with_satellites(planet_texture, satellite_texture, y_pos, x_pos
 def solar_system_with_orbits():
     glDrawBuffer(GL_BACK)
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-    solar_system()
+    solar_system() 
+
+def draw_ring(eixoX, eixoY):
+    glPushMatrix()
+    glBegin(GL_LINE_LOOP)
+    for i in range(360):
+        rad = i * 3.14 / 180
+        glVertex2f(math.cos(rad) * eixoX, math.sin(rad) * eixoY)
+    glEnd()
+    glPopMatrix()
+
+def draw_planets_with_satellites_and_rings(planet_texture, satellite_texture, rings_texture, y_pos, x_pos, scale, planet_diameter, satellite_diameter, radius, moon_radius):
+
+    time = glutGet(GLUT_ELAPSED_TIME) / 1000.0
+    rotation_angle = time * 2
+
+    glPushMatrix()
+    glRasterPos2f(0, -y_pos)
+    glTranslated(0, -y_pos, 0)
+    glTranslatef((x_pos * math.cos(2.0 * 3.14 * rotation_angle * radius / 100)),
+                 (y_pos + y_pos * math.sin(2.0 * 3.14 * rotation_angle * radius / 100)), 0)
+    obj = gluNewQuadric()
+    gluQuadricTexture(obj, GL_TRUE)
+    glEnable(GL_TEXTURE_2D)
+    glBindTexture(GL_TEXTURE_2D, planet_texture)
+    glScalef(scale, scale, scale)
+    glRotated(rotation_angle * 20, 0, 0, 1)
+    gluSphere(obj, planet_diameter, 25, 25)
+    glScalef(scale, scale, scale)
+    glEnable(GL_TEXTURE_2D)
+    glBindTexture(GL_TEXTURE_2D, rings_texture)
+    draw_ring(x_pos/80, y_pos/80)
+
+    glTranslatef(x_pos/20*(math.cos(2.0 * 3.14 * rotation_angle * moon_radius / 100)),
+                 (y_pos/20*math.sin(2.0 * 3.14 * rotation_angle * moon_radius / 100)), 0)
+    glBindTexture(GL_TEXTURE_2D, satellite_texture)
+    glScalef(scale, scale, scale)
+    glRotated(rotation_angle * 5, 1, 0, 1)
+    gluSphere(obj, satellite_diameter, 50, 50)
+    glDisable(GL_TEXTURE_2D)
+
+    glPopMatrix()  
 
 
 def solar_system():
@@ -139,6 +180,14 @@ def solar_system():
     # NEPTUNE - Diameter: 49,528 km
     draw_planets_with_satellites(
         neptune, moon, 127, 127, 1.5, 0.495, 0.20, 1, 1)
+    
+    # JUPITER - Diameter: 142,984 km
+    draw_planets_with_satellites_and_rings(
+        jupiter, moon, saturn_ring, 80, 80, 1.5, 1.43, 0.25, 1.9, 1)
+
+    # SATURN - Diameter: 120,536 km
+    draw_planets_with_satellites_and_rings(
+        saturn, moon, saturn_ring, 97, 97, 1.5, 1.2, 0.25, 1.5, 1)
 
     glRasterPos2f(0, -51)
 
