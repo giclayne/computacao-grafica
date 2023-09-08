@@ -231,6 +231,8 @@ def draw():
     solar_system()
     glutSwapBuffers()
 
+def update():
+    glutPostRedisplay()
 
 def initialize():
     global angle, rotX, rotY, rotZ, obsX, obsY, obsZ
@@ -268,5 +270,11 @@ def main():
 
     initialize()
 
+    glutIdleFunc(update)
+
+    #renderizar janela
+    glutMainLoop()
+
+    return 0
 
 main()
