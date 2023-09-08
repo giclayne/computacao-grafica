@@ -76,6 +76,33 @@ def draw_ring(eixoX, eixoY):
     glEnd()
     glPopMatrix()
 
+# Criar as orbitas de cada planeta
+def show_orbits():
+
+    # MERCURY - Diameter: 4,879.4 km
+    draw_ring(7, 7)
+
+    # VENUS - Diameter: 12,103.6 km
+    draw_ring(17, 17)
+
+    # EARTH AND MOON - Diameter Earth: 12,756.2 km
+    draw_ring(27, 27)
+
+    # MARS - Diameter: 6,792.4 km
+    draw_ring(41, 41)
+
+    # JUPITER - Diameter: 142,984 km
+    draw_ring(80, 80)
+
+    # SATURN - Diameter: 120,536 km
+    draw_ring(97, 97)
+
+    # URANUS - Diameter: 51,118 km
+    draw_ring(107, 107)
+
+    # NEPTUNE - Diameter: 49,528 km
+    draw_ring(127, 127)
+
 def draw_planets_with_satellites_and_rings(planet_texture, satellite_texture, rings_texture, y_pos, x_pos, scale, planet_diameter, satellite_diameter, radius, moon_radius):
 
     time = glutGet(GLUT_ELAPSED_TIME) / 1000.0
