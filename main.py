@@ -109,6 +109,12 @@ def draw_planets_with_satellites_and_rings(planet_texture, satellite_texture, ri
     glPopMatrix()  
 
 
+def draw():
+    glDrawBuffer(GL_BACK)
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+    solar_system()
+    glutSwapBuffers()
+
 def solar_system():
     global mercury, venus
 
