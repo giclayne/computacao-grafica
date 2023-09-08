@@ -67,12 +67,12 @@ def solar_system_with_orbits():
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
     solar_system() 
 
-def draw_ring(eixoX, eixoY):
+def draw_ring(axisX, axisY):
     glPushMatrix()
     glBegin(GL_LINE_LOOP)
     for i in range(360):
         rad = i * 3.14 / 180
-        glVertex2f(math.cos(rad) * eixoX, math.sin(rad) * eixoY)
+        glVertex2f(math.cos(rad) * axisX, math.sin(rad) * axisY)
     glEnd()
     glPopMatrix()
 
