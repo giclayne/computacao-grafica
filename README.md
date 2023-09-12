@@ -16,4 +16,4 @@ Este projeto tem como objetivo criar uma representação interativa do Sistema S
 * Animação contínua para simulação dos movimentos celestes.
 
 ## :construction: Status do Projeto
-Em construção.
+Concluído.
